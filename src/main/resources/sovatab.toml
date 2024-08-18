@@ -1,0 +1,17 @@
+# ░██████╗░█████╗░██╗░░░██╗░█████╗░████████╗░█████╗░██████╗░
+# ██╔════╝██╔══██╗██║░░░██║██╔══██╗╚══██╔══╝██╔══██╗██╔══██╗
+# ╚█████╗░██║░░██║╚██╗░██╔╝███████║░░░██║░░░███████║██████╦╝
+# ░╚═══██╗██║░░██║░╚████╔╝░██╔══██║░░░██║░░░██╔══██║██╔══██╗
+# ██████╔╝╚█████╔╝░░╚██╔╝░░██║░░██║░░░██║░░░██║░░██║██████╦╝
+# ╚═════╝░░╚════╝░░░░╚═╝░░░╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═════╝░
+
+# Header text to display at the top of the player list with color tags
+header = "[#8469b6]TwitchWorld [#808080]| [#FFFFFF]сервер ZalupaTech"
+
+# Maximum number of players on the server
+maxPlayers = 50
+
+# Color of the footer text in HEX format
+footerColor = "#FFFF00"
+
+prefixColor = "#FFAA00"
