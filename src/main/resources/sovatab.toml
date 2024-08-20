@@ -13,5 +13,3 @@ maxPlayers = 50
 
 # Color of the footer text in HEX format
 footerColor = "#FFFF00"
-
-prefixColor = "#FFAA00"

@@ -36,6 +36,7 @@ public class CustomTabListRenderer {
     private static final int playerBackgroundColor = 0x80FFFFFF;
     private static final int padding = 10;
     private static final int headSize = 14;
+    private static Map<String, String> playerPrefixes = new HashMap<>();
 
     @SubscribeEvent
     public static void onRenderGuiOverlay(RenderGuiOverlayEvent.Pre event) {
@@ -60,7 +61,7 @@ public class CustomTabListRenderer {
 
         Map<PlayerInfo, Integer> nameWidths = new HashMap<>();
         for (PlayerInfo player : players) {
-            String displayName = player.getProfile().getName(); // Теперь просто имя игрока
+            String displayName = getDisplayName(player);
             nameWidths.put(player, font.width(displayName));
         }
 
@@ -123,7 +124,7 @@ public class CustomTabListRenderer {
             RenderSystem.setShaderTexture(0, skinLocation);
             guiGraphics.blit(skinLocation, headX, headY, headSize, headSize, 0.0F, 0.0F, 16, 16, 16, 16);
 
-            String displayName = playerName; // Теперь просто имя игрока
+            String displayName = getDisplayName(playerInfo);
             guiGraphics.drawString(font, Component.literal(displayName), headX + headSize + 5, headY + (headSize / 2 - 4), 0xFFFFFF);
             y += 20;
         }
@@ -134,6 +135,13 @@ public class CustomTabListRenderer {
 
         RenderSystem.enableBlend();
         RenderSystem.enableDepthTest();
+    }
+
+    private static String getDisplayName(PlayerInfo playerInfo) {
+        String playerName = playerInfo.getProfile().getName();
+        String prefix = playerPrefixes.getOrDefault(playerName, "");
+        System.out.println("Getting display name for " + playerName + ": prefix = " + prefix);
+        return prefix + playerName;
     }
 
     private static ResourceLocation getSkinResourceLocation(String playerName) {
@@ -189,6 +197,17 @@ public class CustomTabListRenderer {
             int colorCode = parseColor(hexColor);
             guiGraphics.drawString(font, Component.literal(content), currentX, y, colorCode);
             currentX += font.width(content);
+        }
+    }
+
+    public static void updatePrefixes(String[] playerNames, String[] prefixes) {
+        System.out.println("CustomTabListRenderer: Updating prefixes");
+        System.out.println("Players: " + Arrays.toString(playerNames));
+        System.out.println("Prefixes: " + Arrays.toString(prefixes));
+        playerPrefixes.clear();
+        for (int i = 0; i < playerNames.length; i++) {
+            playerPrefixes.put(playerNames[i], prefixes[i]);
+            System.out.println("Updated prefix for " + playerNames[i] + ": " + prefixes[i]);
         }
     }
 }
